@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""module for basic auth"""
+"""Basic aut module"""
 import base64
 from typing import Tuple, TypeVar
 from api.v1.auth.auth import Auth
@@ -7,13 +7,13 @@ from models.user import User
 
 
 class BasicAuth(Auth):
-    """class BasicAuth"""
+    """basic auth"""
 
     def extract_base64_authorization_header(
             self,
             authorization_header: str
             ) -> str:
-        """extracting Base64  Auth"""
+        """Extracting base64"""
         if not (authorization_header and isinstance(authorization_header, str)
                 and authorization_header.startswith('Basic ')):
             return None
@@ -24,7 +24,7 @@ class BasicAuth(Auth):
             self,
             base64_authorization_header: str
             ) -> str:
-        """decoding Base64"""
+        """Decoding base64"""
         if not (base64_authorization_header and
                 isinstance(base64_authorization_header, str)):
             return None
@@ -38,7 +38,7 @@ class BasicAuth(Auth):
             self,
             decoded_base64_authorization_header: str
             ) -> Tuple[str, str]:
-        """extracts user credentials"""
+        """extracting user credentials."""
         if not (decoded_base64_authorization_header and
                 isinstance(decoded_base64_authorization_header, str) and
                 ':' in decoded_base64_authorization_header):
@@ -65,7 +65,7 @@ class BasicAuth(Auth):
         return None
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """retrieving current user"""
+        """Retrieval of current user"""
         try:
             auth_header = self.authorization_header(request)
             encoded = self.extract_base64_authorization_header(auth_header)

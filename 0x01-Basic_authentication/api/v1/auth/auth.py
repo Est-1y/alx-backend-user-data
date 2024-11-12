@@ -5,14 +5,14 @@ from flask import Flask, request
 
 
 class Auth:
-    """Class auth"""
+    """Managing API authentication"""
 
     def require_auth(
             self,
             path: str,
             excluded_paths: List[str]
             ) -> bool:
-        """Required auth func"""
+        """Required authorization func"""
         if path is None or excluded_paths is None or not excluded_paths:
             return True
 
@@ -49,7 +49,7 @@ class Auth:
             self,
             request=None
             ) -> str:
-        """Auth header func"""
+        """Authorization header func"""
         if request is None:
             return None
 
@@ -59,6 +59,6 @@ class Auth:
             self,
             request=None
             ) -> TypeVar('User'):
-        """User func (current)"""
+        """ Current User func"""
         request = Flask(__name__)
         return None
